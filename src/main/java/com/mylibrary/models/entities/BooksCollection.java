@@ -5,16 +5,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name = "tb_books")
 @Data
+@Entity
+@Table(name = "tb_books_collection")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Book {
+public class BooksCollection {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
-    private String author;
-    private String category;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "book_id")
+    private Book book;
+    private String notes;
 }
