@@ -40,6 +40,12 @@ public class SecurityConfiguration {
                         .requestMatchers(new AntPathRequestMatcher("/book/{id}", HttpMethod.GET.name())).authenticated()
                         .requestMatchers(new AntPathRequestMatcher("/delete/book/{id}", HttpMethod.DELETE.name())).authenticated()
                         .requestMatchers(new AntPathRequestMatcher("/update/book/{id}", HttpMethod.PUT.name())).authenticated()
+                        //Collections routes
+                        .requestMatchers(new AntPathRequestMatcher("/create/collection", HttpMethod.POST.name())).authenticated()
+                        .requestMatchers(new AntPathRequestMatcher("/index/collection", HttpMethod.GET.name())).authenticated()
+                        .requestMatchers(new AntPathRequestMatcher("/collection/{id}", HttpMethod.GET.name())).authenticated()
+                        .requestMatchers(new AntPathRequestMatcher("/delete/collection/{id}", HttpMethod.DELETE.name())).authenticated()
+                        .requestMatchers(new AntPathRequestMatcher("/update/collection/{id}", HttpMethod.PUT.name())).authenticated()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
