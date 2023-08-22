@@ -27,9 +27,19 @@ public class SecurityConfiguration {
         return httpSecurity.csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        //User routes
                         .requestMatchers(new AntPathRequestMatcher("/login", HttpMethod.POST.name())).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/register/user", HttpMethod.POST.name())).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/index/user", HttpMethod.GET.name())).authenticated()
+                        .requestMatchers(new AntPathRequestMatcher("/user/{id}", HttpMethod.GET.name())).authenticated()
+                        .requestMatchers(new AntPathRequestMatcher("/delete/user/{id}", HttpMethod.DELETE.name())).authenticated()
+                        .requestMatchers(new AntPathRequestMatcher("/update/user/{id}", HttpMethod.PUT.name())).authenticated()
+                        //Books routes
+                        .requestMatchers(new AntPathRequestMatcher("/register/book", HttpMethod.POST.name())).authenticated()
+                        .requestMatchers(new AntPathRequestMatcher("/index/book", HttpMethod.GET.name())).authenticated()
+                        .requestMatchers(new AntPathRequestMatcher("/book/{id}", HttpMethod.GET.name())).authenticated()
+                        .requestMatchers(new AntPathRequestMatcher("/delete/book/{id}", HttpMethod.DELETE.name())).authenticated()
+                        .requestMatchers(new AntPathRequestMatcher("/update/book/{id}", HttpMethod.PUT.name())).authenticated()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
