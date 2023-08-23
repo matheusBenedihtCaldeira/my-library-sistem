@@ -13,11 +13,11 @@ import java.util.List;
 @Table(name = "tb_collection")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Collection {
+public class CollectionBook {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne(cascade = CascadeType.PERSIST)
     private User user;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<BooksCollection> books = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<BooksCollection> booksCollection = new ArrayList<>();
 }

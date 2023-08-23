@@ -1,7 +1,7 @@
 package com.mylibrary.controllers.collection;
 
-import com.mylibrary.models.dto.CollectionDTO;
-import com.mylibrary.models.entities.Collection;
+import com.mylibrary.models.dto.CollectionRequest;
+import com.mylibrary.models.entities.CollectionBook;
 import com.mylibrary.services.collection.RegisterCollectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +18,8 @@ public class RegisterCollectionController {
     private RegisterCollectionService service;
 
     @PostMapping
-    public ResponseEntity<Collection> registerCollection(@RequestBody CollectionDTO collectionDTO){
-        Collection collection = service.registerCollection(collectionDTO);
-        return ResponseEntity.ok().body(collection);
+    public ResponseEntity<CollectionBook> registerCollection(@RequestBody CollectionRequest collectionRequest){
+        CollectionBook collectionBook = service.registerCollection(collectionRequest);
+        return ResponseEntity.ok().body(collectionBook);
     }
 }

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BooksCollectionDTO {
+public class BooksCollectionRequest {
 
     private Long bookId;
     private String notes;

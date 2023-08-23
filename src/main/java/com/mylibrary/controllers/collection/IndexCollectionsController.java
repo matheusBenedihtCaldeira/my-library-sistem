@@ -1,6 +1,6 @@
 package com.mylibrary.controllers.collection;
 
-import com.mylibrary.models.entities.Collection;
+import com.mylibrary.models.entities.CollectionBook;
 import com.mylibrary.services.collection.IndexCollectionsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +18,8 @@ public class IndexCollectionsController {
     private IndexCollectionsService service;
 
     @GetMapping(value = "/collection")
-    public ResponseEntity<List<Collection>> index(){
-        List<Collection> list = service.index();
+    public ResponseEntity<List<CollectionBook>> index(){
+        List<CollectionBook> list = service.index();
         return ResponseEntity.ok().body(list);
     }
 }

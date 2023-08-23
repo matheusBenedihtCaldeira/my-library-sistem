@@ -1,6 +1,6 @@
 package com.mylibrary.controllers.collection;
 
-import com.mylibrary.models.entities.Collection;
+import com.mylibrary.models.entities.CollectionBook;
 import com.mylibrary.services.collection.GetCollectionByIdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +17,8 @@ public class GetCollectionByIdController {
     private GetCollectionByIdService service;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Collection> getCollection(@PathVariable Long id){
-        Collection collection = service.getCollection(id);
-        return ResponseEntity.ok().body(collection);
+    public ResponseEntity<CollectionBook> getCollection(@PathVariable Long id){
+        CollectionBook collectionBook = service.getCollection(id);
+        return ResponseEntity.ok().body(collectionBook);
     }
 }

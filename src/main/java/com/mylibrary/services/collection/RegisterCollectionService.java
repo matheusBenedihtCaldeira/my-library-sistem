@@ -1,17 +1,16 @@
 package com.mylibrary.services.collection;
 
-import com.mylibrary.models.dto.BooksCollectionDTO;
-import com.mylibrary.models.dto.CollectionDTO;
+import com.mylibrary.models.dto.BooksCollectionRequest;
+import com.mylibrary.models.dto.CollectionRequest;
+import com.mylibrary.models.entities.Book;
 import com.mylibrary.models.entities.BooksCollection;
-import com.mylibrary.models.entities.Collection;
+import com.mylibrary.models.entities.CollectionBook;
 import com.mylibrary.models.entities.User;
 import com.mylibrary.repositories.BookRepository;
 import com.mylibrary.repositories.CollectionRepository;
 import com.mylibrary.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class RegisterCollectionService {
@@ -25,19 +24,17 @@ public class RegisterCollectionService {
     @Autowired
     private UserRepository userRepository;
 
-    public Collection registerCollection(CollectionDTO collectionDTO){
-        Collection collection = new Collection();
-        User user = userRepository.findById(collectionDTO.getUserId()).get();
-        List<BooksCollection> booksCollections = collectionDTO.getBooksCollectionDTOList().stream().map(this::mapToDTO).toList();
-        collection.setUser(user);
-        collection.setBooks(booksCollections);
-        return collectionRepository.save(collection);
+    public CollectionBook registerCollection(CollectionRequest collectionRequest){
+        CollectionBook collectionBook = new CollectionBook();
+        User user = userRepository.findById(collectionRequest.getUserId()).get();
+        Book book = bookRepository.findById(collectionRequest.getBookCollection().getBookId()).get();
+        var notes = collectionRequest.getBookCollection().getNotes();
+        collectionBook.setUser(user);
+        BooksCollection booksCollection = new BooksCollection();
+        booksCollection.setBook(book);
+        booksCollection.setNotes(notes);
+        collectionBook.getBooksCollection().add(booksCollection);
+        return collectionRepository.save(collectionBook);
     }
 
-    private BooksCollection mapToDTO(BooksCollectionDTO booksCollectionDTO){
-        BooksCollection booksCollection = new BooksCollection();
-        booksCollection.setBook(bookRepository.findById(booksCollectionDTO.getBookId()).get());
-        booksCollection.setNotes(booksCollectionDTO.getNotes());
-        return booksCollection;
-    }
 }

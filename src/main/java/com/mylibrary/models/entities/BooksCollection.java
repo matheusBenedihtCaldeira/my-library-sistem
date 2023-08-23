@@ -19,4 +19,9 @@ public class BooksCollection {
     @JoinColumn(name = "book_id")
     private Book book;
     private String notes;
+
+    public BooksCollection(Book book, String notes) {
+        this.book = book;
+        this.notes = notes;
+    }
 }
