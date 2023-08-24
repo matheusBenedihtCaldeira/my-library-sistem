@@ -11,15 +11,16 @@ import org.springframework.stereotype.Service;
 public class RemoveBookToCollectionService {
 
     @Autowired
-    private BookRepository bookRepository;
-
-    @Autowired
     private CollectionRepository collectionRepository;
 
     public void removeBookFromCollection(Long collectionId, int bookCollectionId){
-        CollectionBook collectionBook = collectionRepository.findById(collectionId).get();
-        collectionBook.getBooksCollection().remove(bookCollectionId);
+        CollectionBook collectionBook = findById(collectionId);
+        collectionBook.getBooksCollection().remove(bookCollectionId - 1);
         collectionRepository.save(collectionBook);
+    }
+
+    public CollectionBook findById(Long id){
+        return collectionRepository.findById(id).get();
     }
 
 }
