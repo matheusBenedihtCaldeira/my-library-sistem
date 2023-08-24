@@ -18,6 +18,6 @@ public class CollectionBook {
     private Long id;
     @OneToOne(cascade = CascadeType.PERSIST)
     private User user;
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<BooksCollection> booksCollection = new ArrayList<>();
 }

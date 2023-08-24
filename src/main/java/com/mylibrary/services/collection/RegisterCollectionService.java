@@ -1,7 +1,6 @@
 package com.mylibrary.services.collection;
 
-import com.mylibrary.models.dto.BooksCollectionRequest;
-import com.mylibrary.models.dto.CollectionRequest;
+import com.mylibrary.models.requests.CollectionRequest;
 import com.mylibrary.models.entities.Book;
 import com.mylibrary.models.entities.BooksCollection;
 import com.mylibrary.models.entities.CollectionBook;

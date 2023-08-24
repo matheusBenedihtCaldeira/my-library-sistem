@@ -1,6 +1,6 @@
 package com.mylibrary.controllers.collection;
 
-import com.mylibrary.models.dto.CollectionRequest;
+import com.mylibrary.models.requests.CollectionRequest;
 import com.mylibrary.models.entities.CollectionBook;
 import com.mylibrary.services.collection.RegisterCollectionService;
 import org.springframework.beans.factory.annotation.Autowired;

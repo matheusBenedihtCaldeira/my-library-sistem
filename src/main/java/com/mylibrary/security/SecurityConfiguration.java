@@ -46,7 +46,7 @@ public class SecurityConfiguration {
                         .requestMatchers(new AntPathRequestMatcher("/collection/{id}", HttpMethod.GET.name())).authenticated()
                         .requestMatchers(new AntPathRequestMatcher("/delete/collection/{id}", HttpMethod.DELETE.name())).authenticated()
                         .requestMatchers(new AntPathRequestMatcher("/update/collection/{id}", HttpMethod.PUT.name())).authenticated()
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

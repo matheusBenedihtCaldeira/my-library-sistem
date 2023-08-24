@@ -1,4 +1,4 @@
-package com.mylibrary.models.dto;
+package com.mylibrary.models.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
